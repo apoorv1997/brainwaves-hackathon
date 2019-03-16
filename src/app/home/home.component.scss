@@ -1,0 +1,114 @@
+.nav {
+    width:100%;
+    height:56px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(216, 202, 202, 0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
+    .brand {
+        width:200px;
+        height:35px;
+        padding:3px;
+    }
+    ul {
+        list-style-type: none;
+        width:60%;
+        text-align: center;
+    }
+    li {
+        display: inline-block;
+        margin:15px;
+        font-size: 17px;
+        font-weight: 400;
+        transition: .2s ease-in-out all;
+        cursor: pointer;
+    }
+    li:hover {
+        font-weight: 500;
+    }
+    a {
+        color:inherit;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    .search-doc {
+        width:200px;
+        height:40px;
+        margin:10px;
+        padding:7px;
+        border-radius: 4px;
+        outline:none;
+        border:1px solid #e6e6e6;
+        transition: .2s all ease-in-out;
+    }
+    .select-option {
+        width:150px;
+        height:40px;
+        margin:10px;
+    }
+}
+
+.section {
+    width:100%;
+    margin-top:10px;
+    min-height:calc(100% - 66px);
+    padding-bottom:10px;
+    background: #e6e6e6;
+    .search-section {
+        width:100%;
+        height:auto;
+        padding-bottom:20px;
+        border-bottom: 1px solid #000;
+        .search-header {
+            padding:10px;
+            font-size: 18px;
+            font-weight: 500;
+            margin:20px;
+        }
+    }
+    .doc-item {
+        margin:20px;
+        width:300px;
+        height:250px;
+        box-shadow: 0 4px 8px 0 rgba(216, 202, 202, 0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
+        display: inline-block;
+        border:1px solid #e6e6e6;
+        border-radius: 7px;
+        background: #fff;
+        transition: .2s ease-in-out all;
+        transform: scale(1);
+        cursor: pointer;
+        .doc-text {
+            margin:10px;
+        }
+    }    
+    .doc-item:hover {
+        transform: scale(1.1);
+        box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
+    }
+    .footer {
+        display: flex;
+        flex-direction: row;
+        .paginate {
+            text-align: center;
+            width:70%;
+        }
+        .match {
+            width:200px;
+            height:40px;
+            text-align: center;
+            padding:7px;
+            background: red;
+            color:#000;
+            font-weight: 500;
+        }
+    }
+}
+
+.modal-body {
+    text-align: center;
+    .doc-detail:hover {
+        border:1px solid #e6e6e6;
+        padding:1px;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,87 @@
+<nav class="nav">
+  <ul>
+    <li><img src="../../assets/logo.png" class="brand"/></li>
+    <a routerLink="/"><li>Client Data</li></a>
+    <a routerLink="/sg-data"><li>Sample SG Data</li></a>
+  </ul>
+  <input type="text" placeholder="Search document..." class="search-doc" (keydown)="searchDoc($event)"/>
+  <select class="select-option" (change)="selectCriteria($event.target.value)">
+    <option disabled>Select Criteria</option>
+    <option value="trade date">Trade Date</option>
+    <option value="buy ccy">Buy currency ISO</option>
+    <option value="sell ccy">Sell currency ISO</option>
+    <option value="buy amount">Buy Amount</option>
+    <option value="sell amount">Sell Amount</option>
+    <option value="settlement date">Settlement Date</option>
+    <option value="rate">Rate</option>
+  </select>
+</nav>
+
+<section class="section">
+  <div class="search-section" *ngIf="searched">
+    <p class="search-header">Search Result:- </p>
+    <div class="doc-item" *ngFor="let data of searchedData | paginate: { itemsPerPage: 5, currentPage: a }">
+      <p class="doc-text">Document ID - <strong>{{data[':20']}}</strong></p>
+      <p class="doc-text">Document Type - {{data[':22A']}}</p>
+      <p class="doc-text">Doc created on - <strong>{{data[':30T']}}</strong></p>
+      <p class="doc-text">Doc to be traded by - <strong>{{data[':30V']}}</strong></p>
+      <p class="doc-text">Doc price - <strong>{{data[':36']}}</strong></p>
+      <p class="doc-text">Buy at - <strong>{{data[':32B']}}</strong></p>
+      <p class="doc-text">Sell at - {{data[':33B']}}</p>
+    </div>
+    <pagination-controls (pageChange)="a = $event" class="paginate"></pagination-controls>
+  </div>
+  <div class="doc-item" *ngFor="let data of clientData | paginate: { itemsPerPage: 15, currentPage: p }" (click)="openDoc(docTemplate)">
+    <p class="doc-text">Document ID - <strong>{{data[':20']}}</strong></p>
+    <p class="doc-text">Document Type - {{data[':22A']}}</p>
+    <p class="doc-text">Doc created on - <strong>{{data[':30T']}}</strong></p>
+    <p class="doc-text">Doc to be traded by - <strong>{{data[':30V']}}</strong></p>
+    <p class="doc-text">Doc price - <strong>{{data[':36']}}</strong></p>
+    <p class="doc-text">Buy at - <strong>{{data[':32B']}}</strong></p>
+    <p class="doc-text">Sell at - {{data[':33B']}}</p>
+    <ng-template #docTemplate>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Document Details:-</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="doc-text">Document ID - <strong>{{data[':20']}}</strong></p>
+        <p class="doc-text">Document Type - {{data[':22A']}}</p>
+        <p class="doc-text">Code Ref.- {{data[':22C']}}</p>
+        <p class="doc-text">Delivery Agent - {{data[':53A']}}</p>
+        <p class="doc-text">Doc created on - <strong>{{data[':30T']}}</strong></p>
+        <p class="doc-text">Doc to be traded by - <strong>{{data[':30V']}}</strong></p>
+        <p class="doc-text">Doc price - <strong>{{data[':36']}}</strong></p>
+        <p class="doc-text">Buy at - <strong>{{data[':32B']}}</strong></p>
+        <p class="doc-text">Sell at - {{data[':33B']}}</p>
+        <p class="doc-text">Beneficiary - {{data[':58A']}}</p>
+      </div>
+    </ng-template>
+  </div>
+  <div class="footer">
+    <pagination-controls (pageChange)="p = $event" class="paginate"></pagination-controls>
+    <button class="btn match" (click)="openModal(template)">Match Documents</button>
+  </div>
+</section>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Matching Documents</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p *ngFor="let data of matchedData | paginate: { itemsPerPage: 20, currentPage: z }">
+      <span class="doc-detail">
+        {{data.SGID}} 
+      </span> 
+      <i class="fas fa-arrow-right"></i>
+      <span class="doc-detail">
+        {{data.clientID}}
+      </span>
+    </p>
+    <pagination-controls (pageChange)="z = $event" class="paginate"></pagination-controls>
+  </div>
+</ng-template>

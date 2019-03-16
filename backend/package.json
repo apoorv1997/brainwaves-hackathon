@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend apis for spotify",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "apoorv bankey",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.0",
+    "shortid": "^2.2.14"
+  }
+}

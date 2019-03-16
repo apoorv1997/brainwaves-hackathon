@@ -1,0 +1,21 @@
+<nav class="nav">
+  <ul>
+    <li><img src="../../assets/logo.png" class="brand"/></li>
+    <a routerLink="/home"><li>Client Data</li></a>
+    <a routerLink="/sg-data"><li>Sample SG Data</li></a>
+  </ul>
+  <input type="text" placeholder="Search document..." class="search-doc"/>
+</nav>
+  
+<section class="section">
+  <div class="doc-item" *ngFor="let data of sampleData | paginate: { itemsPerPage: 15, currentPage: p }">
+    <p class="doc-text">Document ID - <strong>{{data[':20']}}</strong></p>
+    <p class="doc-text">Document Type - {{data[':22A']}}</p>
+    <p class="doc-text">Doc created on - <strong>{{data[':30T']}}</strong></p>
+    <p class="doc-text">Doc to be traded by - <strong>{{data[':30V']}}</strong></p>
+    <p class="doc-text">Doc price - <strong>{{data[':36']}}</strong></p>
+    <p class="doc-text">Buy at - {{data[':32B']}}</p>
+    <p class="doc-text">Sell at - {{data[':33B']}}</p>
+  </div>
+  <pagination-controls (pageChange)="p = $event" class="paginate"></pagination-controls>
+</section>
